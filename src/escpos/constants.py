@@ -76,6 +76,10 @@ TXT_SIZE       = GS + b'!'
 
 TXT_NORMAL     = ESC + b'!\x00'     # Normal text
 
+# Fonts
+SET_FONT = lambda n: ESC + b'\x4d' + n
+TXT_FONT_A     = SET_FONT(b'\x00')  # Font type A
+TXT_FONT_B     = SET_FONT(b'\x01')  # Font type B
 
 TXT_STYLE = {
     'bold': {
@@ -94,8 +98,8 @@ TXT_STYLE = {
         '2x': TXT_NORMAL + ESC + b'!\x30'       # Quad area text
     },
     'font': {
-        'a': ESC + b'\x4d\x00',                 # Font type A
-        'b': ESC + b'\x4d\x00'                  # Font type B
+        'a': TXT_FONT_A,
+        'b': TXT_FONT_B
     },
     'align': {
         'left': ESC + b'\x61\x00',              # Left justification
@@ -150,11 +154,6 @@ TXT_STYLE = {
         8: 0x70
     }
 }
-
-# Fonts
-SET_FONT = lambda n: ESC + b'\x4d' + n
-TXT_FONT_A     = SET_FONT(b'\x00')  # Font type A
-TXT_FONT_B     = SET_FONT(b'\x01')  # Font type B
 
 # Spacing
 LINESPACING_RESET = ESC + b'2'
